@@ -1,8 +1,23 @@
 # 📞 Marchel - Central Telefónica IP con Asterisk
 
+<div align="center">
+
+<img src="images/logo-marchel.png" alt="Logo Marchel" width="200"/>
+
 [![Asterisk](https://img.shields.io/badge/Asterisk-v20+-orange.svg)](https://www.asterisk.org/)
 [![VoIP](https://img.shields.io/badge/VoIP-Enabled-green.svg)](https://es.wikipedia.org/wiki/Voz_sobre_protocolo_de_internet)
 [![Universidad](https://img.shields.io/badge/Universidad-Alcal%C3%A1-blue.svg)](https://www.uah.es/)
+
+### 📬 Contacto
+
+[![Email](https://img.shields.io/badge/Email-marcos.santos.aragon%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:marcos.santos.aragon@gmail.com)
+
+[![LinkedIn - Tu Nombre](https://img.shields.io/badge/LinkedIn-Marcos%20Santos%20Aragón-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcos-santos-aragón/)
+[![LinkedIn - Nombre Compañera](https://img.shields.io/badge/LinkedIn-Chelsea%20Fernández%20Hernández-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/)
+
+</div>
+
+---
 
 **Marchel** es una central telefónica completa basada en Asterisk, desarrollada como proyecto académico en la **Universidad Politécnica de Alcalá de Henares** para la asignatura *Laboratorio de Redes, Señales y Sistemas*.
 
@@ -816,18 +831,18 @@ Zoiper es una aplicación VoIP gratuita compatible con Asterisk.
                      │
                      │ SIP/PJSIP (UDP:5060)
                      │
-┌────────────────────▼────────────────────────────────────┐
-│                  Servidor Asterisk                       │
+┌────────────────────▼───────────────────────────────────┐
+│                  Servidor Asterisk                     │
 │  ┌─────────────────────────────────────────────────┐   │
 │  │           Módulos Principales                   │   │
-│  │  • PJSIP (Gestión de usuarios)                 │   │
-│  │  • Dialplan (Lógica de llamadas)               │   │
-│  │  • Voicemail (Buzones de voz)                  │   │
-│  │  • ConfBridge (Conferencias)                   │   │
-│  │  • Queue (Colas de llamadas)                   │   │
-│  │  • Festival (Text-to-Speech)                   │   │
+│  │  • PJSIP (Gestión de usuarios)                  │   │
+│  │  • Dialplan (Lógica de llamadas)                │   │
+│  │  • Voicemail (Buzones de voz)                   │   │
+│  │  • ConfBridge (Conferencias)                    │   │
+│  │  • Queue (Colas de llamadas)                    │   │
+│  │  • Festival (Text-to-Speech)                    │   │
 │  └─────────────────────────────────────────────────┘   │
-└────────────────────┬────────────────────────────────────┘
+└────────────────────┬───────────────────────────────────┘
                      │
          ┌───────────┴───────────┐
          │                       │
@@ -846,15 +861,17 @@ Este proyecto fue desarrollado como parte de un trabajo universitario. Si tienes
 
 ### 📧 Contacto:
 
-Por favor, envía tus sugerencias y comentarios por correo electrónico a:
-
-**Email**: [marcos.santos.aragon@gmail.com](mailto:marcos.santos.aragon@gmail.com)
+<p align="center">
+  <a href="mailto:marcos.santos.aragon@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email-marcos.santos.aragon%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+</p>
 
 Estaremos encantados de recibir tu feedback sobre:
-- Mejoras en la documentación
-- Correcciones de errores
-- Sugerencias de nuevas funcionalidades
-- Experiencias al implementar esta guía
+- ✅ Mejoras en la documentación
+- ✅ Correcciones de errores
+- ✅ Sugerencias de nuevas funcionalidades
+- ✅ Experiencias al implementar esta guía
 
 ---
 
@@ -863,8 +880,23 @@ Estaremos encantados de recibir tu feedback sobre:
 Este proyecto fue desarrollado como **Práctica 2** de la asignatura *Laboratorio de Redes, Señales y Sistemas* en la **Universidad Politécnica de Alcalá de Henares**.
 
 **Desarrolladores**:
-- **[Marcos Santos Aragón]** - [LinkedIn](https://www.linkedin.com/in/marcos-santos-aragón/)
-- **[Chelsea Fernández Hernández]** - [LinkedIn](https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/)
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>[Marcos Santos Aragón]</strong><br>
+      <a href="https://www.linkedin.com/in/marcos-santos-aragón/" target="_blank">
+        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+    </td>
+    <td align="center">
+      <strong>[Chelsea Fernández Hernandez]</strong><br>
+      <a href="https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/" target="_blank">
+        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+    </td>
+  </tr>
+</table>
 
 **Universidad**: Universidad Politécnica de Alcalá de Henares  
 **Asignatura**: Laboratorio de Redes, Señales y Sistemas  
