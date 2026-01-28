@@ -4,22 +4,58 @@
 
 <img src="images/logo-marchel.png" alt="Logo Marchel" width="200"/>
 
-[![Asterisk](https://img.shields.io/badge/Asterisk-v20+-orange.svg)](https://www.asterisk.org/)
-[![VoIP](https://img.shields.io/badge/VoIP-Enabled-green.svg)](https://es.wikipedia.org/wiki/Voz_sobre_protocolo_de_internet)
-[![Universidad](https://img.shields.io/badge/Universidad-Alcal%C3%A1-blue.svg)](https://www.uah.es/)
+[![Asterisk](https://img.shields.io/badge/Asterisk-v22.2.0-orange.svg?logo=asterisk&logoColor=white)](https://www.asterisk.org/)
+[![Protocol](https://img.shields.io/badge/Protocol-PJSIP_(UDP)-blueviolet.svg)](https://wiki.asterisk.org/wiki/display/AST/PJSIP+Configuration+Wizard)
+[![Database](https://img.shields.io/badge/Database-MariaDB_CDR-pink?logo=mariadb&logoColor=white)](https://mariadb.org/)
+[![Web App](https://img.shields.io/badge/Interface-Python_%2F_Flask-yellow?logo=flask)](https://flask.palletsprojects.com/)
+[![TTS](https://img.shields.io/badge/TTS-Festival-green.svg)](http://www.cstr.ed.ac.uk/projects/festival/)
+[![VoIP](https://img.shields.io/badge/VoIP-Enabled-red.svg)](https://es.wikipedia.org/wiki/Voz_sobre_protocolo_de_internet)
+[![Universidad](https://img.shields.io/badge/Universidad-Alcalá-blue.svg)](https://www.uah.es/)
 
 ### 📬 Contacto
-
-[![Email](https://img.shields.io/badge/Email-marcos.santos.aragon%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white)](mailto:marcos.santos.aragon@gmail.com)
-
-[![LinkedIn - Tu Nombre](https://img.shields.io/badge/LinkedIn-Marcos%20Santos%20Aragón-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcos-santos-aragón/)
-[![LinkedIn - Nombre Compañera](https://img.shields.io/badge/LinkedIn-Chelsea%20Fernández%20Hernández-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/)
-
+<table align="center">
+  <tr>
+    <td align="center">
+      <strong>Marcos Santos Aragón</strong>
+    </td>
+    <td align="center">
+      <strong>Chelsea Fernández Hernández</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/marcos-santos-aragón/" target="_blank">
+        <img src="images/linkedin-icon.png" alt="LinkedIn" width="40" height="40"/>
+      </a>
+      &nbsp;&nbsp;
+      <a href="mailto:marcos.santos.aragon@gmail.com" target="_blank">
+        <img src="images/email-icon.png" alt="Email" width="40" height="40"/>
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://github.com/MarcosSAuah" target="_blank">
+        <img src="images/github-icon.png" alt="GitHub" width="70" height="40"/>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/" target="_blank">
+        <img src="images/linkedin-icon.png" alt="LinkedIn" width="40" height="40"/>
+      </a>
+      &nbsp;&nbsp;
+      <a href="mailto:chelseafh2003@gmail.com" target="_blank">
+        <img src="images/email-icon.png" alt="Email" width="40" height="40"/>
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://github.com/Chelseafh" target="_blank">
+        <img src="images/github-icon.png" alt="GitHub" width="70" height="40"/>
+      </a>
+    </td>
+  </tr>
+</table>
 </div>
 
 ---
 
-**Marchel** es una central telefónica completa basada en Asterisk, desarrollada como proyecto académico en la **Universidad Politécnica de Alcalá de Henares** para la asignatura *Laboratorio de Redes, Señales y Sistemas*.
+**Marchel** es una central telefónica completa (PBX) basada en Asterisk, desarrollada como proyecto académico en la **Universidad Politécnica de Alcalá de Henares** para la asignatura *Laboratorio de Redes, Señales y Sistemas*.
 
 Este proyecto implementa un sistema de telefonía IP (VoIP) completo con funcionalidades avanzadas como menús IVR, colas de llamadas, buzón de voz, conferencias, sistema de tarificación y una interfaz web de gestión.
 
@@ -41,6 +77,7 @@ Este proyecto implementa un sistema de telefonía IP (VoIP) completo con funcion
   - [Text-to-Speech (TTS)](#text-to-speech-tts)
   - [Menú IVR](#menú-ivr)
   - [Colas de Llamadas](#colas-de-llamadas)
+  - [Conexión entre PBXs](#conexión-entre-pbxs)
   - [Base de Datos y CDR](#base-de-datos-y-cdr)
   - [Interfaz Web](#interfaz-web)
 - [Configuración de Cliente (Zoiper)](#-configuración-de-cliente-zoiper)
@@ -63,6 +100,7 @@ Este proyecto implementa un sistema de telefonía IP (VoIP) completo con funcion
 - **🗣️ Text-to-Speech** con Festival (voces en español)
 - **📞 Menú IVR** para atención al cliente
 - **⏰ Colas de llamadas** para soporte técnico
+- **🔗 Conexión entre PBXs** mediante troncales PJSIP
 - **💾 Base de datos MariaDB** para registro de llamadas (CDR)
 - **💰 Sistema de tarificación** automático
 - **🌐 Interfaz web** con Flask para estadísticas y gestión
@@ -605,6 +643,191 @@ same => n,Queue(soporte-tecnico,tTwW)
 same => n,Hangup()
 ```
 
+### Conexión entre PBXs
+
+Esta funcionalidad permite conectar dos centrales telefónicas Asterisk diferentes mediante troncales PJSIP, permitiendo que usuarios de diferentes servidores puedan comunicarse entre sí.
+
+#### Arquitectura de la conexión
+
+```
+┌─────────────────────┐  Troncal PJSIP   ┌─────────────────────┐
+│   Servidor A        │◄────────────────►│   Servidor B        │
+│   IP: 192.168.1.10  │   (UDP:5060)     │   IP: 192.168.1.78  │
+│   Usuarios: 2XXX    │                  │   Usuarios: 6XXX    │
+└─────────────────────┘                  └─────────────────────┘
+```
+
+#### Configuración en Servidor A
+
+##### 1. Editar `/etc/asterisk/pjsip.conf` en Servidor A
+
+```ini
+; Configuración del endpoint para Servidor B
+[servidorB]
+type=endpoint
+context=office-phone
+transport=transport-udp
+disallow=all
+allow=ulaw,alaw,gsm
+aors=servidorB-aor
+outbound_auth=servidorB-auth
+direct_media=no
+
+; Configuración de autenticación
+[servidorB-auth]
+type=auth
+auth_type=userpass
+username=servidorB
+password=Hola123
+realm=servidorB
+
+; Configuración del AOR (Address of Record)
+[servidorB-aor]
+type=aor
+contact=sip:192.168.1.78
+
+; Configuración de registro
+[servidorB-registration]
+type=registration
+outbound_auth=servidorB-auth
+server_uri=sip:192.168.1.78
+client_uri=sip:servidorB@192.168.1.78
+retry_interval=60
+
+; Identificación del servidor remoto
+[servidorB-identify]
+type=identify
+endpoint=servidorB
+match=192.168.1.78
+```
+
+##### 2. Editar `/etc/asterisk/extensions.conf` en Servidor A
+
+```ini
+[office-phone]
+; Llamadas locales (usuarios 2XXX)
+exten => _2XXX,1,Answer()
+same => n,Dial(PJSIP/${EXTEN},20,m)
+same => n,Hangup()
+
+; Llamadas al Servidor B (usuarios 6XXX)
+exten => _6XXX,1,Answer()
+same => n,Dial(PJSIP/${EXTEN}@servidorB,25)
+same => n,Hangup()
+```
+
+#### Configuración en Servidor B
+
+##### 1. Editar `/etc/asterisk/pjsip.conf` en Servidor B
+
+```ini
+; Configuración del endpoint para Servidor A
+[servidorA]
+type=endpoint
+context=office-phone
+transport=transport-udp
+disallow=all
+allow=ulaw,alaw,gsm
+aors=servidorA-aor
+outbound_auth=servidorA-auth
+direct_media=no
+
+; Configuración de autenticación
+[servidorA-auth]
+type=auth
+auth_type=userpass
+username=servidorA
+password=Hola123
+realm=servidorA
+
+; Configuración del AOR
+[servidorA-aor]
+type=aor
+contact=sip:192.168.1.10
+
+; Configuración de registro
+[servidorA-registration]
+type=registration
+outbound_auth=servidorA-auth
+server_uri=sip:192.168.1.10
+client_uri=sip:servidorA@192.168.1.10
+retry_interval=60
+
+; Identificación del servidor remoto
+[servidorA-identify]
+type=identify
+endpoint=servidorA
+match=192.168.1.10
+```
+
+##### 2. Editar `/etc/asterisk/extensions.conf` en Servidor B
+
+```ini
+[office-phone]
+; Llamadas locales (usuarios 6XXX)
+exten => _6XXX,1,Answer()
+same => n,Dial(PJSIP/${EXTEN},20,m)
+same => n,Hangup()
+
+; Llamadas al Servidor A (usuarios 2XXX)
+exten => _2XXX,1,Answer()
+same => n,Dial(PJSIP/${EXTEN}@servidorA,25)
+same => n,Hangup()
+```
+
+#### Parámetros importantes
+
+- **direct_media=no**: Desactiva la conexión directa entre endpoints, útil cuando hay NAT
+- **outbound_auth**: Define las credenciales para autenticación saliente
+- **realm**: Identifica el dominio de autenticación del servidor remoto
+- **retry_interval**: Tiempo en segundos entre intentos de registro
+- **match**: Dirección IP del servidor remoto para identificación
+
+#### Verificación de la conexión
+
+En ambos servidores, verifica:
+
+```bash
+# Ver endpoints configurados
+asterisk -rx "pjsip show endpoints"
+
+# Ver registros activos
+asterisk -rx "pjsip show registrations"
+
+# Ver identificaciones
+asterisk -rx "pjsip show identities"
+
+# Probar conectividad
+asterisk -rx "pjsip qualify servidorA"  # En Servidor B
+asterisk -rx "pjsip qualify servidorB"  # En Servidor A
+```
+
+#### Solución de problemas comunes
+
+**El registro falla**:
+- Verifica que las IPs sean correctas y accesibles
+- Comprueba que el puerto 5060 esté abierto en ambos firewalls
+- Verifica las credenciales (username/password)
+
+**No se pueden realizar llamadas**:
+- Verifica el dialplan en ambos servidores
+- Comprueba que los contextos coincidan
+- Revisa los logs: `tail -f /var/log/asterisk/messages`
+
+**Problemas de audio**:
+- Verifica los códecs permitidos (allow/disallow)
+- Comprueba la configuración de NAT si aplica
+- Revisa que `direct_media=no` esté configurado
+
+#### Ejemplo de uso
+
+Una vez configurado:
+
+1. Usuario 2001 en Servidor A marca `6001`
+2. La llamada se enruta a través del troncal hacia Servidor B
+3. El usuario 6001 en Servidor B recibe la llamada
+4. Viceversa para llamadas de 6XXX hacia 2XXX
+
 ### Base de Datos y CDR
 
 #### Instalar MariaDB
@@ -818,6 +1041,7 @@ Zoiper es una aplicación VoIP gratuita compatible con Asterisk.
 - Para acceder al buzón de voz, marca `2000`
 - Para unirte a la conferencia, marca `3000`
 - Para acceder al menú IVR, marca `1010`
+- Para llamar a otra PBX, marca extensiones como `6001`, `6002`, etc.
 
 ---
 
@@ -825,37 +1049,37 @@ Zoiper es una aplicación VoIP gratuita compatible con Asterisk.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    Usuarios Finales                      │
-│              (Zoiper, Softphones, etc.)                  │
-└────────────────────┬────────────────────────────────────┘
-                     │
-                     │ SIP/PJSIP (UDP:5060)
-                     │
-┌────────────────────▼───────────────────────────────────┐
-│                  Servidor Asterisk                     │
+│                    Usuarios Finales                     │
+│              (Zoiper, Softphones, etc.)                 │
+└─────────────────────────────┬───────────────────────────┘
+                              │
+                              │ SIP/PJSIP (UDP:5060)
+                              │
+┌─────────────────────────────▼──────────────────────────┐
+│                  Servidor Asterisk A                   │
 │  ┌─────────────────────────────────────────────────┐   │
-│  │           Módulos Principales                   │   │
-│  │  • PJSIP (Gestión de usuarios)                  │   │
-│  │  • Dialplan (Lógica de llamadas)                │   │
-│  │  • Voicemail (Buzones de voz)                   │   │
-│  │  • ConfBridge (Conferencias)                    │   │
-│  │  • Queue (Colas de llamadas)                    │   │
-│  │  • Festival (Text-to-Speech)                    │   │
+│  │        Módulos Principales                      │   │
+│  │          • PJSIP (Gestión de usuarios)          │   │
+│  │          • Dialplan (Lógica de llamadas)        │   │
+│  │          • Voicemail (Buzones de voz)           │   │
+│  │          • ConfBridge (Conferencias)            │   │
+│  │          • Queue (Colas de llamadas)            │   │
+│  │          • Festival (Text-to-Speech)            │   │
 │  └─────────────────────────────────────────────────┘   │
-└────────────────────┬───────────────────────────────────┘
-                     │
-         ┌───────────┴───────────┐
-         │                       │
-         ▼                       ▼
-┌────────────────┐      ┌─────────────────┐
-│   MariaDB      │      │  Interfaz Web   │
-│   (CDR, etc.)  │      │    (Flask)      │
-└────────────────┘      └─────────────────┘
+└─────────────────┬───────────────────────────┬──────────┘
+                  │                           │
+        ┌─────────┴────────┐                  │ Troncal PJSIP
+        │                  │                  │
+        ▼                  ▼                  ▼
+┌────────────────┐  ┌─────────────┐  ┌──────────────────┐
+│   MariaDB      │  │ Interfaz Web│  │  Servidor        │
+│   (CDR, etc.)  │  │   (Flask)   │  │  Asterisk B      │
+└────────────────┘  └─────────────┘  └──────────────────┘
 ```
 
 ---
 
-## 💡 Sugerencias y Comentarios
+## 💡 Contribuciones y Sugerencias
 
 Este proyecto fue desarrollado como parte de un trabajo universitario. Si tienes sugerencias, comentarios o detectas algún error en la documentación, nos encantaría conocer tu opinión.
 
@@ -864,6 +1088,9 @@ Este proyecto fue desarrollado como parte de un trabajo universitario. Si tienes
 <p align="center">
   <a href="mailto:marcos.santos.aragon@gmail.com" target="_blank">
     <img src="https://img.shields.io/badge/Email-marcos.santos.aragon%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+  <a href="mailto:chelseafh2003@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Email-chelseafh2003%40gmail.com-red?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
   </a>
 </p>
 
@@ -884,15 +1111,21 @@ Este proyecto fue desarrollado como **Práctica 2** de la asignatura *Laboratori
 <table>
   <tr>
     <td align="center">
-      <strong>[Marcos Santos Aragón]</strong><br>
+      <strong>Marcos Santos Aragón</strong><br>
       <a href="https://www.linkedin.com/in/marcos-santos-aragón/" target="_blank">
         <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
       </a>
+      <a href="https://github.com/MarcosSAuah" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+      </a>
     </td>
     <td align="center">
-      <strong>[Chelsea Fernández Hernandez]</strong><br>
+      <strong>Chelsea Fernández Hernández</strong><br>
       <a href="https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/" target="_blank">
         <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/Chelseafh" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
       </a>
     </td>
   </tr>
@@ -917,7 +1150,11 @@ Este proyecto fue desarrollado como **Práctica 2** de la asignatura *Laboratori
 
 ---
 
+## 📝 Licencia
 
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
 
 ## 🙏 Agradecimientos
 
@@ -976,9 +1213,16 @@ asterisk -rx "core set verbose 5"
 - Comprueba la conexión: `asterisk -rx "festival test"`
 - Revisa los logs: `sudo journalctl -u festival -f`
 
+**Problemas con la conexión entre PBXs**:
+- Verifica la conectividad de red entre servidores: `ping IP_SERVIDOR_REMOTO`
+- Comprueba los registros PJSIP: `asterisk -rx "pjsip show registrations"`
+- Revisa los endpoints: `asterisk -rx "pjsip show endpoints"`
+- Verifica que los puertos estén abiertos en ambos firewalls
+- Revisa los logs de ambos servidores para errores de autenticación
+
 ---
 
-**¿Tienes preguntas o sugerencias?** No dudes en contactarnos por correo electrónico. 😊
+**¿Tienes preguntas o sugerencias?** No dudes en contactarnos por correo electrónico o a través de nuestros perfiles de GitHub. 😊
 
 ---
 
