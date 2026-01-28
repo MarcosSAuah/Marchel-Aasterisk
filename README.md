@@ -1,4 +1,4 @@
-# 📞 Marchel - Central Telefónica IP con Asterisk
+# 📞 Marchel - Central Telefónica VoIP con Asterisk
 
 <div align="center">
 
