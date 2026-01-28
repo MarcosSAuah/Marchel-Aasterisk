@@ -25,28 +25,28 @@
   <tr>
     <td align="center">
       <a href="https://www.linkedin.com/in/marcos-santos-aragón/" target="_blank">
-        <img src="images/linkedin-icon.png" alt="LinkedIn" width="40" height="40"/>
+        <img src="images/linkedin-icon.png" alt="LinkedIn" width="50" height="50"/>
       </a>
       &nbsp;&nbsp;
       <a href="mailto:marcos.santos.aragon@gmail.com" target="_blank">
-        <img src="images/email-icon.png" alt="Email" width="40" height="40"/>
+        <img src="images/email-icon.png" alt="Email" width="50" height="50"/>
       </a>
       &nbsp;&nbsp;
       <a href="https://github.com/MarcosSAuah" target="_blank">
-        <img src="images/github-icon.png" alt="GitHub" width="70" height="40"/>
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="140" height="50"/>
       </a>
     </td>
     <td align="center">
       <a href="https://www.linkedin.com/in/chelsea-fernandez-hernandez-64a339189/" target="_blank">
-        <img src="images/linkedin-icon.png" alt="LinkedIn" width="40" height="40"/>
+        <img src="images/linkedin-icon.png" alt="LinkedIn" width="50" height="50"/>
       </a>
       &nbsp;&nbsp;
       <a href="mailto:chelseafh2003@gmail.com" target="_blank">
-        <img src="images/email-icon.png" alt="Email" width="40" height="40"/>
+        <img src="images/email-icon.png" alt="Email" width="50" height="50"/>
       </a>
       &nbsp;&nbsp;
       <a href="https://github.com/Chelseafh" target="_blank">
-        <img src="images/github-icon.png" alt="GitHub" width="70" height="40"/>
+        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" width="140" height="50"/>
       </a>
     </td>
   </tr>
